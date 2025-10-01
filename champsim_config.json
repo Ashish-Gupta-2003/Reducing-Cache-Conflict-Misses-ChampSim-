@@ -1,0 +1,92 @@
+{
+    "executable_name": "bin/hybrid_policy-bimodal-no-no-no-lru-1core",
+    "block_size": 64,
+    "page_size": 4096,
+    "heartbeat_frequency": 10000000,
+    "num_cpus": 1,
+    "ooo_cpu": [
+        {
+            "frequency": 4000,
+            "rob_size": 224,
+            "issue_width": 8,
+            "ifetch_buffer_size": 64,
+            "decode_buffer_size": 32,
+            "dispatch_buffer_size": 32,
+            "execute_width": 4,
+            "lq_size": 128,
+            "sq_size": 72,
+            "branch_predictor": "bimodal",
+            "btb": "basic_btb"
+        }
+    ],
+    "caches": [
+        {
+            "name": "L1D",
+            "sets": 64,
+            "ways": 8,
+            "rq_size": 64,
+            "wq_size": 64,
+            "pq_size": 32,
+            "mshr_size": 16,
+            "latency": 4,
+            "prefetch_as_load": false,
+            "virtual_prefetch": true,
+            "prefetcher": "no_prefetch",
+            "replacement": "lru"
+        },
+        {
+            "name": "L1I",
+            "sets": 64,
+            "ways": 8,
+            "rq_size": 64,
+            "wq_size": 64,
+            "pq_size": 32,
+            "mshr_size": 16,
+            "latency": 4,
+            "prefetch_as_load": false,
+            "virtual_prefetch": false,
+            "prefetcher": "no_prefetch",
+            "replacement": "lru"
+        },
+        {
+            "name": "L2C",
+            "sets": 1024,
+            "ways": 8,
+            "rq_size": 32,
+            "wq_size": 32,
+            "pq_size": 16,
+            "mshr_size": 32,
+            "latency": 10,
+            "prefetch_as_load": false,
+            "virtual_prefetch": false,
+            "prefetcher": "no_prefetch",
+            "replacement": "lru"
+        },
+        {
+            "name": "LLC",
+            "sets": 2048,
+            "ways": 16,
+            "rq_size": 32,
+            "wq_size": 32,
+            "pq_size": 16,
+            "mshr_size": 64,
+            "latency": 20,
+            "prefetch_as_load": false,
+            "virtual_prefetch": false,
+            "data_prefetcher": "no_prefetch",
+            "replacement": "hybrid_policy"
+        }
+    ],
+    "physical_memory": {
+        "frequency": 3200,
+        "channels": 1,
+        "ranks": 1,
+        "banks": 8,
+        "rows": 65536,
+        "columns": 128,
+        "channel_width": 8,
+        "dram_rq_size": 256,
+        "dram_wq_size": 256,
+        "translation": "rank_then_bank"
+    }
+}
